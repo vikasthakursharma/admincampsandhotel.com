@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'v9.1.1',
-        'version' => '9.1.1.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '9cad8eedea19d28875efbc103a1ed13410d12406',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -374,12 +374,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v9.1.1',
-            'version' => '9.1.1.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '9cad8eedea19d28875efbc103a1ed13410d12406',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -437,12 +437,12 @@
             'dev_requirement' => false,
         ),
         'league/flysystem' => array(
-            'pretty_version' => '3.0.11',
-            'version' => '3.0.11.0',
+            'pretty_version' => '3.0.12',
+            'version' => '3.0.12.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/flysystem',
             'aliases' => array(),
-            'reference' => '1ca148713c23cadeb9d7526973f81fb4a04090a3',
+            'reference' => '4744d96fb2456d9808be3ad596a2520b902996e2',
             'dev_requirement' => false,
         ),
         'league/mime-type-detection' => array(
@@ -464,12 +464,12 @@
             'dev_requirement' => true,
         ),
         'monolog/monolog' => array(
-            'pretty_version' => '2.3.5',
-            'version' => '2.3.5.0',
+            'pretty_version' => '2.4.0',
+            'version' => '2.4.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
-            'reference' => 'fd4380d6fc37626e2f799f29d91195040137eba9',
+            'reference' => 'd7fd7450628561ba697b7097d86db72662f54aef',
             'dev_requirement' => false,
         ),
         'mtdowling/cron-expression' => array(
