@@ -33,8 +33,7 @@
                               </div>
                             </td>
                             <td>
-                                  @php $str = substr($allbanner->image, 7); @endphp
-                             <img src="{{ asset('storage/'.$str) }}" class="img img-thumbnail">
+                             <img src="{{ asset('storage/images/'.$allbanner->image) }}" class="img img-thumbnail">
 
                             </td>
                             <td>2018-01-20</td>

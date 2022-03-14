@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image as Image;
 
 use App\Models\Banner;
 
@@ -27,27 +26,44 @@ class BannerController extends Controller
     }
     public function store(Request $request)
     {
-        $banner = new Banner;
-        $banner->tagline = $request['tagline'];
-        //$banner->image= $request->file('image')->store('public/uploads');
-        $image = $request->file('image');
-        $input['imagename'] = time().'.'.$image->extension();
+        $bannerImageArr = array();
 
-        $destinationPath = public_path('/thumbnail');
-        $img = ImageResize::make($image->path());
-        $img->resize(100, 100, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['imagename']);
+        if ($request->validate(
+            [
+                'tagline' => 'required',
+                'image' => 'required'
+            ]
+        )) {
+            
+            $bannerImageArr = array();
 
-        $destinationPath = public_path('/image');
-        $image->move($destinationPath, $input['imagename']);
+            // check if has file
+            if ($request->hasFile('image')) {
+                $files = $request->file('image');
 
- Image::create(['image' => $input['imagename'], 'thumbnail' => $input['imagename']]);
+                // loop of all files
+                foreach ($files as $key => $image) {
+                    // store file name with extension
+                    $fileName = time() . $key . '.' . $image->getClientOriginalExtension();
+                    $bannerImageArr[] = $fileName;
 
-        return back()
-            ->with('success','Successfully Save Your Image file')
-            ->with('imageName',$input['imagename']);
+                    // upload image to uploads folder
+                    $image->storeAs('public/images', $fileName);
+                }
+            }
 
+            $bannerImage = implode(',', $bannerImageArr);
+
+            // create object of model banner
+            $modelBanner = new Banner;
+            
+            $modelBanner->tagline = $request['tagline'];
+            $modelBanner->image = $bannerImage;
+            $modelBanner->save();
+
+        }
+
+        return redirect('/admin/banner/');
     }
     public function edit($id)
     {
