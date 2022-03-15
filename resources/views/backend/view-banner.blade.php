@@ -1,5 +1,7 @@
 @extends('backend.layouts.main')
 @section('backend-section')
+
+
 <div class="main-content" style="min-height: 530px;">
         <section class="section">
           <div class="section-body">
@@ -7,11 +9,14 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <h4>Banner</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
                       <div id="table-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="table-1_length"><label>Show <select name="table-1_length" aria-controls="table-1" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="table-1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table-1"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped dataTable no-footer" id="table-1" role="grid" aria-describedby="table-1_info">
+
+                    @if(count($banner)) >= 1)
+
                         <thead>
                           <tr role="row"><th class="text-center sorting_asc" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
                               #
@@ -20,6 +25,13 @@
                             </th><th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-label="Task Name: activate to sort column ascending" style="width: 147.281px;">Task Name</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Progress" style="width: 78.5469px;">Progress</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Members" style="width: 209.547px;">Members</th><th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-label="Due Date: activate to sort column ascending" style="width: 89.9531px;">Due Date</th><th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 107.609px;">Status</th><th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 73.625px;">Action</th></tr>
                         </thead>
                         <tbody>
+                                @else
+                                <div class="alert alert-warning">
+                                     <strong>Sorry!</strong> No Banner Found
+                                 </div>
+                             @endif
+
+                             @if(count($banner)) >= 1)
                             @foreach($banner as $allbanner)
                         <tr role="row" class="odd">
                             <td class="sorting_1">
@@ -47,6 +59,7 @@
                         </td>
                           </tr>
                           @endforeach
+                            @endif
                         </tbody>
                       </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="table-1_info" role="status" aria-live="polite">
 

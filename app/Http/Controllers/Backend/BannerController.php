@@ -34,12 +34,13 @@ class BannerController extends Controller
                 'image' => 'required'
             ]
         )) {
-            
+
             $bannerImageArr = array();
 
             // check if has file
             if ($request->hasFile('image')) {
                 $files = $request->file('image');
+
 
                 // loop of all files
                 foreach ($files as $key => $image) {
@@ -48,7 +49,7 @@ class BannerController extends Controller
                     $bannerImageArr[] = $fileName;
 
                     // upload image to uploads folder
-                    $image->storeAs('public/images', $fileName);
+                    $image->storeAs('public/images',$fileName);
                 }
             }
 
@@ -56,8 +57,9 @@ class BannerController extends Controller
 
             // create object of model banner
             $modelBanner = new Banner;
-            
+
             $modelBanner->tagline = $request['tagline'];
+
             $modelBanner->image = $bannerImage;
             $modelBanner->save();
 
@@ -102,6 +104,8 @@ class BannerController extends Controller
         if(is_null($banner)){
             return redirect('admin/banner');
         }else{
+            //delete image in folder also
+            unlink("storage/images/".$banner->image);
 
             $banner->delete();
             return redirect('admin/banner');
@@ -109,5 +113,4 @@ class BannerController extends Controller
 
 
     }
-
 }
