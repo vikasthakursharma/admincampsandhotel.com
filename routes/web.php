@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\TestimonialController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\UsersController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Models\Banner;
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,7 @@ Route::get('admin/banner/edit/{id}',[BannerController::class,'edit'])->name('nam
 Route::get('admin/banner/update/{id}',[BannerController::class,'update'])->name('name.update');
 Route::post('admin/banner/update/{id}',[BannerController::class,'update'])->name('name.update');
 Route::get('admin/banner/delete/{id}',[BannerController::class,'delete'])->name('name.delete');
+
+
+//route for admin
+Route::get('admin/profile',[ProfileController::class,'index'])->name('admin.profile');
