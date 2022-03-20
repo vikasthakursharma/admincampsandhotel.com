@@ -46,3 +46,8 @@ Route::get('admin/banner/delete/{id}',[BannerController::class,'delete'])->name(
 
 //route for admin
 Route::get('admin/profile',[ProfileController::class,'index'])->name('admin.profile');
+
+// no access
+Route::get('/no-access', function() {
+    return view('backend.layouts.errors-404');
+});
