@@ -1,7 +1,10 @@
 @extends('backend.layouts.main')
 @section('backend-section')
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f2c97e6e232e0b7c2391312088d0c989cde268dc
     <div class="main-content" style="min-height: 530px;">
         <section class="section">
             <div class="section-body">
@@ -9,7 +12,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
+<<<<<<< HEAD
                                 <h4>Banner</h4>
+=======
+                                <h4>Basic DataTables</h4>
+>>>>>>> f2c97e6e232e0b7c2391312088d0c989cde268dc
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -36,6 +43,7 @@
                                             <div class="col-sm-12">
                                                 <table class="table table-striped dataTable no-footer" id="table-1"
                                                     role="grid" aria-describedby="table-1_info">
+<<<<<<< HEAD
 
                                                     @if (count($banner) >= 1)
                                                         <thead>
@@ -80,6 +88,41 @@
                                                     @endif
 
                                                     @if (count($banner) >= 1)
+=======
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="text-center sorting_asc" tabindex="0"
+                                                                aria-controls="table-1" rowspan="1" colspan="1"
+                                                                aria-sort="ascending" aria-label="
+                                      #
+                                    : activate to sort column descending" style="width: 24.4375px;">
+                                                                #
+                                                            </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="table-1"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Task Name: activate to sort column ascending"
+                                                                style="width: 147.281px;">Task Name</th>
+                                                            <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                                aria-label="Progress" style="width: 78.5469px;">Progress
+                                                            </th>
+                                                            <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                                aria-label="Members" style="width: 209.547px;">Members</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="table-1"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Due Date: activate to sort column ascending"
+                                                                style="width: 89.9531px;">Due Date</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="table-1"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Status: activate to sort column ascending"
+                                                                style="width: 107.609px;">Status</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="table-1"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Action: activate to sort column ascending"
+                                                                style="width: 73.625px;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+>>>>>>> f2c97e6e232e0b7c2391312088d0c989cde268dc
                                                         @foreach ($banner as $allbanner)
                                                             <tr role="row" class="odd">
                                                                 <td class="sorting_1">
@@ -94,10 +137,19 @@
                                                                 </td>
                                                                 <td>
                                                                     @php
+<<<<<<< HEAD
                                                                         $images = explode(',', $allbanner->image);
                                                                     @endphp
                                                                     @foreach ($images as $imgSrc)
                                                                         <img src="{{ asset('storage/images/' . $imgSrc) }}" class="img img-thumbnail" alt="{{$imgSrc}}">
+=======
+                                                                        // convert comma seperated into arr
+                                                                        $images = explode(',', $allbanner->image);
+                                                                    @endphp
+                                                                    @foreach ($images as $imgSrc)
+                                                                        <img src="{{asset('/storage/images/' . $imgSrc) }}"
+                                                                            alt="{{ $imgSrc }}" class="img img-thumbnail">
+>>>>>>> f2c97e6e232e0b7c2391312088d0c989cde268dc
                                                                     @endforeach
 
                                                                 </td>
@@ -107,6 +159,26 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
+<<<<<<< HEAD
+=======
+                                                                    <a href="{{ url('/admin/banner/create/') }}"
+                                                                        class="btn btn-success btn-sm">Add</a>
+                                                                    <a href="{{ url('/admin/banner/edit/' . $allbanner->id) }}"
+                                                                        class="btn btn-warning btn-sm">Edit</a>
+                                                                    <a href="{{ url('/admin/banner/delete/' . $allbanner->id) }}"
+                                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info" id="table-1_info" role="status"
+                                                    aria-live="polite">
+>>>>>>> f2c97e6e232e0b7c2391312088d0c989cde268dc
 
                                                                     <a href="{{ url('/admin/banner/create/') }}"><i
                                                                             class="material-icons">add_box</i></a>
@@ -129,7 +201,10 @@
                                                 <div class="dataTables_info" id="table-1_info" role="status"
                                                     aria-live="polite">
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f2c97e6e232e0b7c2391312088d0c989cde268dc
                                                     {{ $banner->links() }}
                                                 </div>
                                             </div>
