@@ -1,0 +1,30 @@
+[33mcommit cea35e5a7d75c30566323681ee98fc0983c15b7b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: yogender1995 <42475357+yogender1995@users.noreply.github.com>
+Date:   Sun Mar 20 23:47:18 2022 +0530
+
+    error page created and image code
+    
+    make error page
+    image code done
+
+[33mcommit dec9b330308d6331722affce5d2bf075ab7e974d[m[33m ([m[1;31mupstream/master[m[33m)[m
+Author: Vikas Thakur <thakurvikas437@gmail.com>
+Date:   Thu Mar 17 22:49:35 2022 +0530
+
+    update view
+
+[33mcommit 2a805ef14895a88fe61458cc12abdcf34f197142[m
+Author: Vikas Thakur <thakurvikas437@gmail.com>
+Date:   Tue Mar 15 22:46:20 2022 +0530
+
+    changes in banner section
+    
+    image view
+    no banner found show on banner page
+    delete image when banner data deleted
+
+[33mcommit f2c97e6e232e0b7c2391312088d0c989cde268dc[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: yogender1995 <42475357+yogender1995@users.noreply.github.com>
+Date:   Mon Mar 14 23:54:58 2022 +0530
+
+    Update view-banner.blade.php
