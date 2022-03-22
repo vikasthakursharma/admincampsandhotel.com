@@ -97,7 +97,7 @@
                                                                         $images = explode(',', $allbanner->image);
                                                                     @endphp
                                                                     @foreach ($images as $imgSrc)
-                                                                        <img src="{{ asset('storage/images/' . $imgSrc) }}" class="img img-thumbnail" alt="{{$imgSrc}}">
+                                                                        <img src="{{ asset('storage/images/' . $imgSrc) }}" class="img img-thumbnail" alt="{{$imgSrc}}" style="width: 100px;height:100px;">
                                                                     @endforeach
 
                                                                 </td>

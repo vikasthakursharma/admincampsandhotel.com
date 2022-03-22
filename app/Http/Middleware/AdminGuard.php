@@ -16,12 +16,7 @@ class AdminGuard
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has('user')) {
-            
             return $next($request);
-        } else {
-            return redirect('/not-found');
-        }
         
     }
 }
