@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Banner;
-
+use File;
 class BannerController extends Controller
 {
 
@@ -100,17 +100,34 @@ class BannerController extends Controller
     {
 
         $banner = Banner::find($id);
+        $multiple_image_array = explode(',',$banner->image);
 
-        if(is_null($banner)){
+        if(is_null($banner))
+        {
             return redirect('admin/banner');
         }else{
-            //delete image in folder also
-            unlink("storage/images/".$banner->image);
+                if (count($multiple_image_array) > 1)
+                {
 
-            $banner->delete();
-            return redirect('admin/banner');
-        }
+                    foreach($multiple_image_array as $images)
+                    {
 
+                        File::delete(public_path("storage/images/".$images));
+                        $banner->delete();
+                    }
+                    return redirect('admin/banner');
+
+                } else {
+                    //delete image in folder also
+                        unlink("storage/images/".$banner->image);
+
+                        $banner->delete();
+
+                        return redirect('admin/banner');
+
+                }
+
+            }
 
     }
 }
