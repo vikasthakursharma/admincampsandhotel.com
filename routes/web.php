@@ -56,6 +56,8 @@ Route::middleware(['admin.guard'])->group(function () {
     Route::post('admin/banner/update/{id}', [BannerController::class, 'update'])->name('name.update');
     Route::get('admin/banner/delete/{id}', [BannerController::class, 'delete'])->name('name.delete');
 
+    // ------------- delte image ---------------------//
+    Route::get('/delete-image/{id}/{image}', [BannerController::class, 'deleteImage']);
 
     //------------- admin user profile ----------------------//
     Route::get('admin/profile', [ProfileController::class, 'index'])->name('admin.profile');

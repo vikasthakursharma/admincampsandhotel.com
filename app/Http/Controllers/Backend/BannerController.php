@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Banner;
 use File;
+
 class BannerController extends Controller
 {
 
@@ -21,12 +22,11 @@ class BannerController extends Controller
     {
         $title = "Add Banner";
         $url = url('admin/banner/create/');
-        $data = compact('url','title');
+        $data = compact('url', 'title');
         return view('backend.add-banner')->with($data);
     }
     public function store(Request $request)
     {
-        $bannerImageArr = array();
 
         if ($request->validate(
             [
@@ -49,7 +49,7 @@ class BannerController extends Controller
                     $bannerImageArr[] = $fileName;
 
                     // upload image to uploads folder
-                    $image->storeAs('public/images',$fileName);
+                    $image->storeAs('public/images', $fileName);
                 }
             }
 
@@ -62,7 +62,6 @@ class BannerController extends Controller
 
             $modelBanner->image = $bannerImage;
             $modelBanner->save();
-
         }
 
         return redirect('/admin/banner/');
@@ -71,63 +70,108 @@ class BannerController extends Controller
     {
 
         $banner = Banner::find($id);
-        if(is_null($banner)){
+        if (is_null($banner)) {
 
 
             return redirect('admin/banner');
-
-        }else{
+        } else {
             $title = "Update Banner";
-            $url = url('admin/banner/update')."/".$id;
-            $data = compact('banner','url','title');
+            $url = url('admin/banner/update') . "/" . $id;
+            $data = compact('banner', 'url', 'title');
             return view('backend.add-banner')->with($data);
         }
-
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        $bannerImageArr = array();
+
+        // check if has file
+        if ($request->hasFile('image')) {
+            $files = $request->file('image');
+
+
+            // loop of all files
+            foreach ($files as $key => $image) {
+                // store file name with extension
+                $fileName = time() . $key . '.' . $image->getClientOriginalExtension();
+                $bannerImageArr[] = $fileName;
+
+                // upload image to uploads folder
+                $image->storeAs('public/images', $fileName);
+            }
+        }
 
         $banner = Banner::find($id);
         $banner->tagline = $request['tagline'];
-        $banner->image= $request->file('image')->store('public/uploads');
-        $banner->save();
-        return redirect('admin/banner/');
 
+        // convert image string to array
+        $imageArr = explode(',', $banner->image);
+
+        // merge old array with new array
+        $newImageArr = array_merge($imageArr, $bannerImageArr);
+
+        // convert array to string
+        $bannerImage = implode(',', $newImageArr);
+
+        $banner->image = $bannerImage;
+        $banner->save();
+
+        return redirect('admin/banner/');
     }
 
     public function delete($id)
     {
 
         $banner = Banner::find($id);
-        $multiple_image_array = explode(',',$banner->image);
+        $multiple_image_array = explode(',', $banner->image);
 
-        if(is_null($banner))
-        {
+        if (is_null($banner)) {
             return redirect('admin/banner');
-        }else{
-                if (count($multiple_image_array) > 1)
-                {
+        } else {
+            if (count($multiple_image_array) > 1) {
 
-                    foreach($multiple_image_array as $images)
-                    {
+                foreach ($multiple_image_array as $images) {
 
-                        File::delete(public_path("storage/images/".$images));
-                        $banner->delete();
-                    }
-                    return redirect('admin/banner');
-
-                } else {
-                    //delete image in folder also
-                        unlink("storage/images/".$banner->image);
-
-                        $banner->delete();
-
-                        return redirect('admin/banner');
-
+                    File::delete(public_path("storage/images/" . $images));
+                    $banner->delete();
                 }
+                return redirect('admin/banner');
+            } else {
+                //delete image in folder also
+                unlink("storage/images/" . $banner->image);
 
+                $banner->delete();
+
+                return redirect('admin/banner');
             }
+        }
+    }
 
+    // delte image
+    public function deleteImage($id, $image) {
+
+        $banner = Banner::find($id);
+
+        // convert image string into array
+        $imageArr = explode(',', $banner->image);
+
+        // check if image in array
+        if(in_array($image, $imageArr)) {
+            // serach image in array and retrun key
+            $key = array_search($image, $imageArr);
+
+            // delete from array
+            unset($imageArr[$key]);
+            unlink("storage/images/" . $image);
+        }
+
+        // convert array into string
+        $bannerImage = implode(',', $imageArr);
+
+        $banner->image = $bannerImage;
+        $banner->save();
+        
+        return redirect('admin/banner/edit/'. $id);
     }
 }
