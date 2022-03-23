@@ -34,7 +34,7 @@ class AuthController extends Controller
                 // put user data into session after login
                 $request->session()->put('user', $user);
 
-                return redirect('/home');
+               return redirect('/home');
 
             }else{
 

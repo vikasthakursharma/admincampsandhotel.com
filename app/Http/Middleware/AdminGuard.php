@@ -3,7 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminGuard
 {
@@ -16,7 +19,13 @@ class AdminGuard
      */
     public function handle(Request $request, Closure $next)
     {
+
+        if(session('user')){
             return $next($request);
-        
+        } else {
+            return redirect('/not-access');
+          }
+
+
     }
 }

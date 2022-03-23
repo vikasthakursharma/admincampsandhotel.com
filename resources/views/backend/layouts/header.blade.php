@@ -178,7 +178,7 @@
                               src={{ url('backend/img/user.png') }} class="user-img-radious-style"> <span
                               class="d-sm-none d-lg-inline-block"></span></a>
                       <div class="dropdown-menu dropdown-menu-right pullDown">
-                          <div class="dropdown-title">Hello {{ session('admin_name') }}</div>
+                          <div class="dropdown-title">Hello {{ session('user')['user_name'] }}</div>
                           <a href="{{ route('admin.profile') }}" class="dropdown-item has-icon"> <i
                                   class="far
                                       fa-user"></i> Profile
@@ -240,5 +240,5 @@
                       </li>
                   </ul>
               </aside>
-          </div> 
-                 
+          </div>
+

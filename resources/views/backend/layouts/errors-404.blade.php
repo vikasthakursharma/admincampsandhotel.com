@@ -29,13 +29,13 @@
                     <div class="container mt-5">
                         <div class="page-error">
                             <div class="page-inner">
-                                <h1>404</h1>
+                                <h1>403</h1>
                                 <div class="page-description">
-                                    The page you were looking for could not be found.
+                              To access the Twilight admin panel login first
                                 </div>
                                 <div class="page-search">
                                     <div class="mt-3">
-                                        <a href="{{url('/admin/auth/login')}}">Back to Login</a>
+                                        <a href="{{url('/admin/auth/login')}}">Login</a>
                                     </div>
                                 </div>
                             </div>

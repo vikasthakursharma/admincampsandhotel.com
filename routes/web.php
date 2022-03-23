@@ -23,8 +23,7 @@ use App\Models\Banner;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// ------login logout register routes ------------------------------------// 
+// ------login logout register routes ------------------------------------//
 Route::get('/', [AuthController::class, 'index'])->name('name.login');
 Route::get('/admin/auth/login', [AuthController::class, 'index'])->name('name.login');
 Route::post('/admin/auth/login', [AuthController::class, 'login'])->name('name.login');
@@ -33,9 +32,9 @@ Route::get('/admin/auth/logout', [AuthController::class, 'logout'])->name('backe
 Route::get('/admin/auth/register', [AuthController::class, 'register_user'])->name('backend.register');;
 Route::post('/admin/auth/register', [AuthController::class, 'register'])->name('backend.register');
 
-
 // no access
-Route::get('/not-found', function () {
+Route::get('not-access', function () {
+
     return view('backend.layouts.errors-404');
 });
 
@@ -65,7 +64,6 @@ Route::middleware(['admin.guard'])->group(function () {
     // ------------ users -----------------------------//
     Route::get('/admin/users', [UsersController::class, 'index'])->name('backend.users');
 });
-
 
 
 
