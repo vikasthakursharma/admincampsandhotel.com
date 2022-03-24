@@ -29,8 +29,9 @@ Route::get('/admin/auth/login', [AuthController::class, 'index'])->name('name.lo
 Route::post('/admin/auth/login', [AuthController::class, 'login'])->name('name.login');
 Route::get('/admin/auth/logout', [AuthController::class, 'logout'])->name('backend.users');
 
-Route::get('/admin/auth/register', [AuthController::class, 'register_user'])->name('backend.register');;
+Route::get('/admin/auth/register', [AuthController::class, 'register_user'])->name('backend.register');
 Route::post('/admin/auth/register', [AuthController::class, 'register'])->name('backend.register');
+
 
 // no access
 Route::get('not-access', function () {

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Backend\BannerController;
+use Mail;
 class AuthController extends Controller
 {
     //
@@ -65,6 +67,7 @@ class AuthController extends Controller
         $auth->email = $request['email'];
         $auth->password = Hash::make($request['password']);
         $auth->save();
-        return redirect('/admin/auth/login');
+        sendRegisterUserEmail($auth->name, $auth->email);
+         return redirect('/admin/auth/login')->with('status', 'Successfully Register Check your email');
     }
 }

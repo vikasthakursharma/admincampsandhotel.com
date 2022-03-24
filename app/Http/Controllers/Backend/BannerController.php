@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Banner;
 use File;
+use Illuminate\Support\Facades\Mail;
+
 
 class BannerController extends Controller
 {
@@ -171,7 +173,7 @@ class BannerController extends Controller
 
         $banner->image = $bannerImage;
         $banner->save();
-        
+
         return redirect('admin/banner/edit/'. $id);
     }
 }
