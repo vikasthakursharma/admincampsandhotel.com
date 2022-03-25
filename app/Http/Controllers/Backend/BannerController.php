@@ -107,8 +107,13 @@ class BannerController extends Controller
         $banner = Banner::find($id);
         $banner->tagline = $request['tagline'];
 
-        // convert image string to array
-        $imageArr = explode(',', $banner->image);
+        if ($banner->image == "") {
+            $imageArr = array();
+        } else {
+            // convert image string to array
+            $imageArr = explode(',', $banner->image);
+        }
+
 
         // merge old array with new array
         $newImageArr = array_merge($imageArr, $bannerImageArr);
@@ -126,32 +131,33 @@ class BannerController extends Controller
     {
 
         $banner = Banner::find($id);
-        $multiple_image_array = explode(',', $banner->image);
 
         if (is_null($banner)) {
             return redirect('admin/banner');
         } else {
+            $multiple_image_array = array();
+
+            if ($banner->image != "") {
+                $multiple_image_array = explode(',', $banner->image);
+            } 
+            
             if (count($multiple_image_array) > 1) {
 
                 foreach ($multiple_image_array as $images) {
 
                     File::delete(public_path("storage/images/" . $images));
-                    $banner->delete();
+                    
                 }
-                return redirect('admin/banner');
-            } else {
-                //delete image in folder also
-                unlink("storage/images/" . $banner->image);
+            } 
 
-                $banner->delete();
-
-                return redirect('admin/banner');
-            }
+            $banner->delete();
+            return redirect('admin/banner');
         }
     }
 
     // delte image
-    public function deleteImage($id, $image) {
+    public function deleteImage($id, $image)
+    {
 
         $banner = Banner::find($id);
 
@@ -159,7 +165,7 @@ class BannerController extends Controller
         $imageArr = explode(',', $banner->image);
 
         // check if image in array
-        if(in_array($image, $imageArr)) {
+        if (in_array($image, $imageArr)) {
             // serach image in array and retrun key
             $key = array_search($image, $imageArr);
 
@@ -174,6 +180,6 @@ class BannerController extends Controller
         $banner->image = $bannerImage;
         $banner->save();
 
-        return redirect('admin/banner/edit/'. $id);
+        return redirect('admin/banner/edit/' . $id);
     }
 }

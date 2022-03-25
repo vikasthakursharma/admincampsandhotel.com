@@ -66,7 +66,7 @@
                       </form>
                     </div>
                     <div class="mb-4 text-muted text-center">
-                      Already Registered? <a href="auth-login.html">Login</a>
+                      Already Registered? <a href="{{url('/admin/auth/login')}}">Login</a>
                     </div>
                   </div>
                 </div>
