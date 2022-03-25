@@ -36,14 +36,23 @@
                                     <div class="form-group">
                                         @isset($banner)
                                             @php
-                                                $images = explode(',', $banner->image);
+                                                $images = [];
+                                                
+                                                if ($banner->image != '') {
+                                                    $images = explode(',', $banner->image);
+                                                }
+                                                
                                             @endphp
-                                            @foreach ($images as $imgSrc)
-                                                <img src="{{ asset('storage/images/' . $imgSrc) }}" class="img img-thumbnail"
-                                                    alt="{{ $imgSrc }}" style="width:120px;height:120px;">
-                                                <a href="{{url('/delete-image/'.$banner->id.'/'.$imgSrc)}}"><i class="material-icons"
-                                                    style="margin-left: -30px;margin-top: 5px;position: absolute; color: red;">delete</i></a>
-                                            @endforeach
+                                            @if (!empty($images))
+                                                @foreach ($images as $imgSrc)
+                                                    <img src="{{ asset('storage/images/' . $imgSrc) }}"
+                                                        class="img img-thumbnail" alt="{{ $imgSrc }}"
+                                                        style="width:120px;height:120px;">
+                                                    <a href="{{ url('/delete-image/' . $banner->id . '/' . $imgSrc) }}"><i
+                                                            class="material-icons"
+                                                            style="margin-left: -30px;margin-top: 5px;position: absolute; color: red;">delete</i></a>
+                                                @endforeach
+                                            @endif
                                         @endisset
                                     </div>
                                 </div>
