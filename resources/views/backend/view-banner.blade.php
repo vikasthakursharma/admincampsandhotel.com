@@ -9,28 +9,33 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Banner</h4>
+                                <h4 style="float:right;">Banner</h4>
+
                             </div>
+                            <div class="card-header">
+                                    <p class="btn btn-warning"> Search according to tagline</p>
+
+                                </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div id="table-1_wrapper"
                                         class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-6">
-                                                <div class="dataTables_length" id="table-1_length"><label>Show <select
-                                                            name="table-1_length" aria-controls="table-1"
-                                                            class="form-control form-control-sm">
-                                                            <option value="10">10</option>
-                                                            <option value="25">25</option>
-                                                            <option value="50">50</option>
-                                                            <option value="100">100</option>
-                                                        </select> entries</label></div>
+                                            <form method="GET" action="">
+                                            <div class="col-md-6">
+                                                <div><input
+                                                            type="text" class="form-control form-control-sm" aria-controls="table-1" name="search">
+
+                                                        </div>
+
+
                                             </div>
-                                            <div class="col-sm-12 col-md-6">
-                                                <div id="table-1_filter" class="dataTables_filter"><label>Search:<input
-                                                            type="search" class="form-control form-control-sm"
-                                                            placeholder="" aria-controls="table-1"></label></div>
+                                            <div class="col-md-6">
+                                                    <input type="submit" name="submit" value="Search" class="btn btn-info" style="margin-top:10px;">
+
                                             </div>
+
+                                            </form>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -139,7 +144,7 @@
                                                 <div class="dataTables_info" id="table-1_info" role="status"
                                                     aria-live="polite">
 
-                                                    {{ $banner->links() }}
+                                                    {{$banner->links("pagination::bootstrap-4")}}
                                                 </div>
                                             </div>
                                         </div>
