@@ -37,23 +37,11 @@ class BannerController extends Controller
             ]
         )) {
 
-            $bannerImageArr = array();
-
-            // check if has file
-            if ($request->hasFile('image')) {
-                $files = $request->file('image');
-
-
-                // loop of all files
-                foreach ($files as $key => $image) {
-                    // store file name with extension
-                    $fileName = time() . $key . '.' . $image->getClientOriginalExtension();
-                    $bannerImageArr[] = $fileName;
-
-                    // upload image to uploads folder
-                    $image->storeAs('public/images', $fileName);
-                }
-            }
+            // uploadImage function upload the image and use two parameter 
+            // 1. Request parameter
+            // 2. image name which is given as name in input field
+            // 3. image path
+            $bannerImageArr = uploadImage($request, 'image', 'public/images');
 
             $bannerImage = implode(',', $bannerImageArr);
 
@@ -86,23 +74,12 @@ class BannerController extends Controller
 
     public function update(Request $request, $id)
     {
-        $bannerImageArr = array();
 
-        // check if has file
-        if ($request->hasFile('image')) {
-            $files = $request->file('image');
-
-
-            // loop of all files
-            foreach ($files as $key => $image) {
-                // store file name with extension
-                $fileName = time() . $key . '.' . $image->getClientOriginalExtension();
-                $bannerImageArr[] = $fileName;
-
-                // upload image to uploads folder
-                $image->storeAs('public/images', $fileName);
-            }
-        }
+        // uploadImage function upload the image and use two parameter 
+        // 1. Request parameter
+        // 2. image name which is given as name in input field
+        // 3. image path
+        $bannerImageArr = uploadImage($request, 'image', 'public/images');
 
         $banner = Banner::find($id);
         $banner->tagline = $request['tagline'];
@@ -139,16 +116,15 @@ class BannerController extends Controller
 
             if ($banner->image != "") {
                 $multiple_image_array = explode(',', $banner->image);
-            } 
-            
+            }
+
             if (count($multiple_image_array) > 1) {
 
                 foreach ($multiple_image_array as $images) {
 
                     File::delete(public_path("storage/images/" . $images));
-                    
                 }
-            } 
+            }
 
             $banner->delete();
             return redirect('admin/banner');
@@ -181,5 +157,14 @@ class BannerController extends Controller
         $banner->save();
 
         return redirect('admin/banner/edit/' . $id);
+    }
+
+    // imageGallery display all image of banner
+    public function imageGallery() {
+        // get all banner 
+        $banners = Banner::all();
+        $data = compact('banners');
+        
+        return view('backend.gallery')->with($data);
     }
 }
