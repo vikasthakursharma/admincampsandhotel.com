@@ -1,11 +1,12 @@
 <?php
 
 //function to send email to registered users
- function sendRegisterUserEmail($name,$email)
+ function sendRegisterUserEmail($name,$email,$password)
 {
   $data = [
             'name'   => $name,
-            'email'    => $email
+            'email'    => $email,
+            'password'=> $password
         ];
     Mail::send('backend.mail', $data, function($message) use ($data)
     {

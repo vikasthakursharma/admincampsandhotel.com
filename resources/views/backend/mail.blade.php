@@ -197,6 +197,11 @@
                             <tr>
                                 <td style="padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: left; font-weight:bold;">
                                     <p style="margin: 0;">Thanks for choosing our website.</p>
+                                    <br>
+                                <p style="margin: 0;">Email: {{ $email}}</p>
+                                <br>
+                                <p style="margin: 0;">Password:  {{ $password}}</p>
+
                                 </td>
                             </tr>
                             <tr>
