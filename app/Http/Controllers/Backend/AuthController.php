@@ -8,6 +8,8 @@ use App\Models\Backend\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Backend\BannerController;
 use Mail;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 class AuthController extends Controller
 {
     //
@@ -66,8 +68,13 @@ class AuthController extends Controller
 
         $auth->email = $request['email'];
         $auth->password = Hash::make($request['password']);
+        $request->validate([
+            'name'=>'required|string|',
+            'email'=>'required|unique:users',
+            'password' => ['required',Password::min(8)],
+        ]);
         $auth->save();
-        sendRegisterUserEmail($auth->name, $auth->email);
-         return redirect('/admin/auth/login')->with('status', 'Successfully Register Check your email');
+        sendRegisterUserEmail($auth->name, $auth->email,$request['password']);
+        return redirect('/admin/auth/register')->with('status', 'Admin Register successfully check your email id to login credentials!');
     }
 }

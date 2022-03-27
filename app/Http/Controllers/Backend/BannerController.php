@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Mail;
 class BannerController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $banner = Banner::paginate(5);
+
+        $search = $request['search'] ?? "";
+             if ($search!='') {
+                $banner = Banner::where('tagline','LIKE',"$search%")->paginate(5);
+             } else {
+                  $banner = Banner::paginate(5);
+             }
         $data = compact('banner');
         return view('backend.view-banner')->with($data);
     }
@@ -123,6 +129,7 @@ class BannerController extends Controller
                 foreach ($multiple_image_array as $images) {
 
                     File::delete(public_path("storage/images/" . $images));
+
                 }
             }
 

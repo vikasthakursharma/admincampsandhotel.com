@@ -36,20 +36,37 @@
                           <div class="form-group col-6">
                             <label for="frist_name">Name</label>
                             <input id="frist_name" type="text" class="form-control" name="name" autofocus>
+                            @error('name')
+                            <span class="text-danger">
+                            {{ $message }}
+                            @enderror
+                            </span>
                           </div>
+
                           <div class="form-group col-6">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control" name="email">
+                                @error('email')
+                                <span class="text-danger">
+                                {{ $message }}
+                                @enderror
                                 <div class="invalid-feedback">
                                 </div>
                               </div>
                         </div>
+
+                        </span>
 
                         <div class="row">
                           <div class="form-group col-6">
                             <label for="password" class="d-block">Password</label>
                             <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
                               name="password">
+                                @error('password')
+                                <span class="text-danger">
+                                {{ $message }}
+                                @enderror
+                                </span>
                             <div id="pwindicator" class="pwindicator">
                               <div class="bar"></div>
                               <div class="label"></div>
@@ -57,7 +74,6 @@
                           </div>
 
                         </div>
-
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary btn-lg btn-block">
                             Register
@@ -68,6 +84,11 @@
                     <div class="mb-4 text-muted text-center">
                       Already Registered? <a href="{{url('/admin/auth/login')}}">Login</a>
                     </div>
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                        {{ session('status') }}
+                        </div>
+                        @endif
                   </div>
                 </div>
               </div>
