@@ -64,6 +64,9 @@ Route::middleware(['admin.guard'])->group(function () {
 
     // ------------ users -----------------------------//
     Route::get('/admin/users', [UsersController::class, 'index'])->name('backend.users');
+
+    // -------------------- gallery ----------------------//
+    Route::get('/gallery', [BannerController::class, 'imageGallery']);
 });
 
 

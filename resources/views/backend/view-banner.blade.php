@@ -48,8 +48,8 @@
                                                                 <th class="text-center sorting_asc" tabindex="0"
                                                                     aria-controls="table-1" rowspan="1" colspan="1"
                                                                     aria-sort="ascending" aria-label="
-                                                                      #
-                                                                    : activate to sort column descending"
+                                                                              #
+                                                                            : activate to sort column descending"
                                                                     style="width: 24.4375px;">
                                                                     #
                                                                 </th>
@@ -99,19 +99,21 @@
                                                                 </td>
                                                                 <td>
                                                                     @php
-                                                                        $images = array();
-
+                                                                        $images = [];
+                                                                        
                                                                         // check if image string not empty
-                                                                        if($allbanner->image != "") {
+                                                                        if ($allbanner->image != '') {
                                                                             $images = explode(',', $allbanner->image);
                                                                         }
                                                                     @endphp
                                                                     @if (!empty($images))
-                                                                        @foreach ($images as $imgSrc)
-                                                                            <img src="{{ asset('storage/images/' . $imgSrc) }}"
-                                                                                class="img img-thumbnail"
-                                                                                alt="{{ $imgSrc }}"
-                                                                                style="width: 100px;height:100px;">
+                                                                        @foreach ($images as $key => $imgSrc)
+                                                                            @if ($key < 2)
+                                                                                <img src="{{ asset('storage/images/' . $imgSrc) }}"
+                                                                                    class="img img-thumbnail"
+                                                                                    alt="{{ $imgSrc }}"
+                                                                                    style="width: 100px;height:100px;">
+                                                                            @endif
                                                                         @endforeach
                                                                     @endif
 
